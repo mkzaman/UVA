@@ -1,1 +1,7 @@
-*.cpb
+*.cbp
+bin
+obj
+*.txt
+*.layout
+*.depend
+*.cbTemp
