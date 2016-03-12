@@ -1,87 +1,69 @@
-/*
-    author: shuvo
-    uva 10038 jolly jumper
-    adhoc
-    :)
-    1st june,2013
-*/
+/** verdict: WA RE AC
+ *  author: zaman
+ *  used algorithm: adhoc
+ *  remarks:
+ *  date: March 13, 2016, time of acceptance: 12:16 AM
+ *  rank: 879 time: 0.000
+ *
+ */
 
-#include <iostream>
-#include <iomanip>
-#include <cmath>
-#include <cstdlib>
-#include <ctime>
-#include <vector>
-#include <list>
-#include <deque>
-#include <queue>
-#include <stack>
-#include <map>
-#include <set>
-#include <bitset>
-#include <cctype>
-#include <cstring>
-#include <typeinfo>
-#include <exception>
-#include <stdexcept>
-#include <memory>
-#include <fstream>
-#include <string>
-#include <sstream>
-#include <functional>
-#include <iterator>
-#include <algorithm>
-#include <cassert>
-#include <cfloat>
-#include <climits>
-#include <cstdio>
-#include <locale>
-#include <limits>
-#include <utility>
+#include<cstdio>
+#include<sstream>
+#include<cstdlib>
+#include<cctype>
+#include<cmath>
+#include<algorithm>
+#include<set>
+#include<queue>
+#include<stack>
+#include<list>
+#include<iostream>
+#include<fstream>
+#include<numeric>
+#include<string>
+#include<vector>
+#include<cstring>
+#include<map>
+#include<iterator>
 
 using namespace std;
 
-
 int main()
 {
-    //freopen("input.txt","r",stdin);
-    //freopen("output.txt","w",stdout);
-    int number_of_elements,temp,i,check;
-    vector<int>container,balchal;
-    while(cin>>number_of_elements)
-    {
-        check=0;
-        while(number_of_elements--)
-        {
-            cin>>temp;
-            container.push_back(temp);
-        }
-        for(i=1;i<container.size();i++)
-        {
-            temp=fabs(container[i]-container[i-1]);
-            balchal.push_back(temp);
-        }
+	//freopen("input.txt","r",stdin);
+	//freopen("output.txt","w",stdout);
 
-        sort(balchal.begin(),balchal.end());
-        for(i=1;i<balchal.size();i++)
+	int numOfElements, tempNum;
+	vector<int>number;
+	vector<bool>diffBetweenNumbers;
+	while(cin>>numOfElements)
+    {
+        for(int i=0; i<numOfElements; i++)
         {
-            if(balchal[i]==balchal[i-1])
+            scanf("%d",&tempNum);
+            number.push_back(tempNum);
+        }
+        diffBetweenNumbers.assign(numOfElements-1,false);
+        for(int i = 1; i < numOfElements; i++)
+        {
+            tempNum = abs(number[i]-number[i-1]);
+            if(tempNum < numOfElements && tempNum > 0)
             {
-                check=1;
-                break;
+                diffBetweenNumbers[tempNum - 1] = true;
             }
         }
-        if(check==1)
+        if(find(diffBetweenNumbers.begin(), diffBetweenNumbers.end(), false) != diffBetweenNumbers.end())
         {
-            cout<<"Not jolly"<<endl;
+            printf("Not jolly\n");
         }
         else
         {
-            cout<<"Jolly"<<endl;
+            printf("Jolly\n");
         }
-        container.clear();
-        balchal.clear();
+
+        number.clear();
+        diffBetweenNumbers.clear();
 
     }
-    return 0;
+	return 0;
 }
